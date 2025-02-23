@@ -32,6 +32,7 @@ dependencies {
 test {
     useJUnitPlatform()
     systemProperty "cucumber.filter.tags", System.getProperty("cucumber.filter.tags")
+    useTestNG()
 }
 configurations {
     cucumberRuntime {
@@ -67,6 +68,22 @@ tasks.register('webTest') {
                     '--glue', 'stepDef',
                     '--tags', "@web",
                     'src/test/java/features']
+        }
+    }
+}
+task cucumber() {
+    description("Running Cucumber Test")
+    dependsOn assemble, compileTestJava
+    doLast {
+        javaexec {
+            main = "io.cucumber.core.cli.Main"
+            classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
+            args = [
+                    '--plugin', 'pretty',
+                    '--plugin', 'html:reports/cucumber.html',
+                    '--glue', 'stepDef',
+                    'src/test/java/features'
+            ]
         }
     }
 }
