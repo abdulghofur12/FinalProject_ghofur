@@ -31,3 +31,5 @@ public class WebPage {
         driver.findElement(sidenav_my_indo).isDisplayed();
     }
 }
+
+// page
