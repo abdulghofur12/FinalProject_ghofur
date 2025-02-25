@@ -1,35 +1,36 @@
 package pages;
 
+import org.assertj.core.api.Assertions;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 import static helper.Utility.driver;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+// WebPage for Login and common elements
 public class WebPage {
-
-    By input_username = By.name("username");
-    By input_pwd = By.name("password");
-    By btn_login = By.xpath("//button[@type = 'submit']");
-    By sidenav_my_indo = By.xpath("//*[text() = 'My Info']");
-
-    public void goToLoginPage() {
-        driver.get("https://www.demoblaze.com/");
+    By input_username = By.id("user-name");
+    By input_pass = By.id("password");
+    By button_login = By.id("login-button");
+    By text_error_msg (String msg){
+        return By.xpath("//*[contains(text(), '"+ msg +"')]");
     }
 
-    public void inputUsername(String username) {
+    public void isOnLoginPage(){
+        driver.get("https://www.saucedemo.com/");
+    }
+    public void inputUserName(String username){
         driver.findElement(input_username).sendKeys(username);
     }
-
-    public void inputPwd(String pwd) {
-        driver.findElement(input_pwd).sendKeys(pwd);
+    public void inputPassword(String password){
+        driver.findElement(input_pass).sendKeys(password);
     }
-
-    public void clickBtnLogin(){
-        driver.findElement(btn_login).click();
+    public void clickButtonlogin(){
+        driver.findElement(button_login).click();
     }
-
-    public void assert_show_sidebar_my_info(){
-        driver.findElement(sidenav_my_indo).isDisplayed();
+    public void assertErrorMessage(String errormsg){
+        driver.findElement(text_error_msg(errormsg)).isDisplayed();
     }
 }
-
-// page

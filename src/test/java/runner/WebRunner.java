@@ -6,11 +6,11 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        plugin = {"pretty", "html:target/cucumber-report.html"},
+        plugin = {"pretty", "html:target/cucumber-reports.html"},
         glue = {"stepDef"},
         features = {"src/test/java/features"},
-        tags = "@api",
+        tags = "@web",
         monochrome = true
 )
-public class TestRunner {
+public class WebRunner {
 }
