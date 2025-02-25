@@ -1,4 +1,4 @@
-Feature: Test Automation Web www.saucedemo.com
+Feature: Test Automation Web
 
   @web
   Scenario: Login logout using valid user name and password (TC-01)
